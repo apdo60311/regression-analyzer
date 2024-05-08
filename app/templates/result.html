@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Result Page</h1>
+    <div>
+        <iframe src="{{ url_for('static', filename='/plots/plot.html' ) }}" frameborder="0" width="80%" height="450px"></iframe>
+    </div>
+{% endblock %}
