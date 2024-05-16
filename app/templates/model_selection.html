@@ -1,0 +1,74 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/model_selection.css') }}">    
+{% endblock %}
+
+{% block content %}
+<div class="background"></div> <!-- New div for background animation -->
+
+<h1 class="title">Choose Your Model</h1>
+
+<div id="app" class="container">
+  <a href="/model_selection/SVR">
+    <card data-image="https://tse2.mm.bing.net/th?id=OIP.QwmjNlfF43_NmaxxmyfIZwHaE0&pid=Api&P=0&h=220">
+      <h1 slot="header">SVR</h1>
+      <p slot="content">Support Vector Regression (SVR) is a type of supervised learning model used for regression analysis. It works by mapping input data to a high-dimensional feature space so that a linear function can be used for regression.</p>
+    </card>
+  
+  </a>
+
+  <a href="/model_selection/LinearRegression">
+    <card data-image="https://tse3.mm.bing.net/th?id=OIP.PAKxrH8DcFZGt7ZaiH860gHaHM&pid=Api&P=0&h=220">
+      <h1 slot="header">Linear Regression</h1>
+      <p slot="content">Linear Regression is a simple and commonly used statistical technique for modeling the relationship between one or more independent variables and a dependent variable.</p>
+    </card>  
+  </a>
+  
+  <a href="/model_selection/Huber">
+    <card data-image="https://tse2.mm.bing.net/th?id=OIP.08txTE-nsmQgldgp5HVCDQHaFj&pid=Api&P=0&h=220">
+      <h1 slot="header">Huber</h1>
+      <p slot="content">Huber Regression is a robust version of linear regression that is less sensitive to outliers in the data. It combines the advantages of least squares estimation with the robustness of maximum likelihood estimation.</p>
+    </card>
+  </a>
+  <a href="/model_selection/RANSAC">
+    <card data-image="https://tse4.mm.bing.net/th?id=OIP.MnhD8xnfblO8ejgYsRbRMQHaFj&pid=Api&P=0&h=220">
+      <h1 slot="header">RANSAC</h1>
+      <p slot="content">RANdom SAmple Consensus (RANSAC) is an iterative method used to estimate parameters of a mathematical model from a set of observed data points that may contain outliers.</p>
+    </card>
+  </a>
+  
+  <a href="/model_selection/BayesianRidge">
+    <card data-image="https://tse2.mm.bing.net/th?id=OIP.E9FzOLV6hgn1f6bay-8TrAHaGL&pid=Api&P=0&h=220">
+      <h1 slot="header">Bayesian Ridge</h1>
+      <p slot="content">Bayesian Ridge Regression is a probabilistic model for regression tasks. It places a prior distribution over the coefficients of the regression model, allowing for uncertainty estimates in the predictions.</p>
+    </card>
+  </a>
+  <a href="/model_selection/TheilSen">
+    <card data-image="https://tse2.mm.bing.net/th?id=OIP.bqVXhuQ9opqXtn8N2W3q-QAAAA&pid=Api&P=0&h=220">
+      <h1 slot="header">TheilSen</h1>
+      <p slot="content">Theil-Sen Estimator is a robust method for estimating the slope of a linear regression model. It computes the median slope among all pairs of points in the dataset, providing resistance to outliers.</p>
+    </card>
+  </a>
+  <a href="/model_selection/Ridge">
+  <card data-image="https://tse4.mm.bing.net/th?id=OIP.8KwSO4Bi_EQ7HKYsc6maHAHaFT&pid=Api&P=0&h=220">
+    <h1 slot="header">Ridge</h1>
+    <p slot="content">Ridge Regression is a technique used to analyze multiple regression data that suffer from multicollinearity. It adds a penalty term to the ordinary least squares objective, shrinking the coefficients and reducing model complexity.</p>
+  </card>
+  </a>
+  <card data-image="https://tse4.mm.bing.net/th?id=OIP.HMJKB_bi9ozcWjn-rTOgcwAAAA&pid=Api&P=0&h=220">
+    <h1 slot="header">Best Model</h1>
+    <p slot="content">The best model is the one that fits your data and problem domain the most accurately. It could be any of the mentioned models or a combination of them, depending on the specific requirements and characteristics of your dataset.</p>
+  </card>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="{{ url_for('static', filename='/js/modelSelection.js' ) }}"></script>
+
+{% endblock %}
+

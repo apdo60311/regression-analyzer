@@ -1,11 +1,87 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Home
+  Regressoin Analyser
 {% endblock %}
 
 {% block content %}
 
-    <h1>Welcome to the Home Page</h1>
-    <a href="{{ url_for('model_result' ) }}">Enter</a>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+<div class="img">
+    <img src="../static/images/Premium Vector _ Business team, statistical data analysis, deadline.jpeg" alt="Management Image">
+</div>
+<div class="Analyzingproject"> Regressoin Analyser</div>
+<div class="teams">
+    Unravel the hidden relationships within your datasets with Regression Analyzer, the ultimate tool for data exploration and analysis. Whether you're a seasoned data scientist or a novice analyst, this intuitive app empowers you to delve deep into your data, extract meaningful insights, and make informed decisions.
+</div>
+
+<form action="/" method="post" enctype="multipart/form-data"  >
+
+    <!-- <a href="#" id="start-btn" class="btn">  </a> -->
+    <input  id = 'file-picker' type="file" name="file" hidden  multiple>
+    <label for="file-picker" class="btn">Start journy</label>
+    <input id="sub-btn" type="submit" value="Upload" title="Upload your data" hidden>
+</form>
+
+<script>
+
+
+        const filePicker = document.getElementById('file-picker')
+        const submitBtn = document.getElementById('sub-btn')
+
+        filePicker.addEventListener('change',() => {
+            if (filePicker.files.length !== 0) {
+                submitBtn.click()
+            }
+        })
+
+
+
+    // // Variable to track if file picker has been opened
+    // let filePickerOpened = false;
+  
+    // // Function to handle click on the link
+    // function handleClick(event) {
+    //   event.preventDefault(); // Prevent default link behavior
+      
+    //   if (!filePickerOpened) {
+    //     // Open file picker
+    //     const fileInput = document.createElement('input');
+    //     fileInput.type = 'file';
+    //     fileInput.addEventListener('change', handleFileSelect);
+    //     fileInput.click();
+  
+    //     filePickerOpened = true; // Set flag to true
+    //   } else {
+    //     alert('Please select a file before clicking again to upload.'); // Provide feedback if clicked again without selecting a file
+    //   }
+    // }
+  
+    // // Function to handle file selection
+    // function handleFileSelect(event) {
+    //   const selectedFile = event.target.files[0];
+    //   fetch('/', {
+    //   method: 'POST',
+    //   body: selectedFile,
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Handle the response from the server
+    //   console.log(data);
+    // })
+    // .catch(error => {
+    //   // Handle the error
+    //   console.error(error);
+    // });
+    //   filePickerOpened = false;
+    // }
+  
+    // // Add event listener to the link
+    // const filePickerLink = document.getElementById('filePicker');
+    // filePickerLink.addEventListener('click', handleClick);
+  </script>
+
 {% endblock %}

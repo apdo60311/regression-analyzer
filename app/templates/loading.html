@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Loading
+{% endblock %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}" />
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="body">
+      <span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="base">
+        <span></span>
+        <div class="face"></div>
+      </div>
+    </div>
+    <div class="longfazers">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <h1>Redirecting</h1>
+
+
+  <script src=""></script>
+  <script src="{{ url_for('static', filename='js/loading.js') }}" defer></script>
+
+{% endblock %}

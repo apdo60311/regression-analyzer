@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prepare Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    form {
+      width: 60%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    select, input[type="radio"], input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    select:hover, input[type="radio"]:hover, input[type="submit"]:hover {
+      border-color: #007bff;
+    }
+
+    select:focus, input[type="radio"]:focus, input[type="submit"]:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px #007bff;
+    }
+
+    input[type="radio"] {
+      display: inline-block;
+      width: auto;
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Prepare Data</h1>
+  <form action="/prepare_data" method="post">
+    <label for="target_variable">Target Variable:</label>
+    <select name="target_variable" id="target_variable">
+        {% for col in column_names %}
+            <option value="{{col}}">{{col}}</option>        
+        {% endfor %}
+    </select>
+    <br>
+    <label for="features">Features:</label>
+    <select name="features" id="features" multiple>
+        {% for col in column_names %}
+            <option value="{{col}}">{{col}}</option>        
+        {% endfor %}
+    </select>
+
+    <br>
+    <label for="remove-missing">Remove Missing values:</label>
+    <input type="radio" name="remove-missing" value="yes"> Yes
+    <input type="radio" name="remove-missing" value="no" checked> No
+    <br>
+    <label for="remove-duplicates">Remove Duplicates:</label>
+    <input type="radio" name="remove-duplicates" value="yes"> Yes
+    <input type="radio" name="remove-duplicates" value="no" checked> No
+    <br>
+    <label for="normalize_data">Normalize Data:</label>
+    <input type="radio" name="normalize_data" value="yes"> Yes
+    <input type="radio" name="normalize_data" value="no" checked> No
+    <br>
+    <label for="remove_outliers">Remove Outliers:</label>
+    <input type="radio" name="remove_outliers" value="yes" id="removeOutliersYes"> Yes
+    <input type="radio" name="remove_outliers" value="no" checked id="removeOutliersNo"> No
+    <br>
+    <label for="outlier_columns" id="rem-out-lab" style="display: none;">Columns:</label>
+    <select name="outlier_columns" id="outlier_columns" style="display: none;">
+        {% for col in column_names %}
+            <option value="{{col}}">{{col}}</option>        
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Prepare Data">
+  </form>
+  <script>
+    const removeOutliersYes = document.getElementById('removeOutliersYes');
+    const removeOutliersNo = document.getElementById('removeOutliersNo');
+    const outlierColumns = document.getElementById('outlier_columns');
+    const remOutLab = document.getElementById('rem-out-lab');
+
+    removeOutliersYes.addEventListener('change', function() {
+      if (this.checked) {
+        outlierColumns.style.display = this.value === 'yes' ? 'block' : 'none';
+        remOutLab.style.display = this.value === 'yes' ? 'block' : 'none';
+        
+      }
+    });
+
+    removeOutliersNo.addEventListener('change', function() {
+      if (this.checked) {
+        outlier_columns.style.display = this.value === 'yes' ? 'block' : 'none';
+        remOutLab.style.display = this.value === 'yes' ? 'block' : 'none';
+      }
+    });
+    
+
+  </script>
+</body>
+</html>

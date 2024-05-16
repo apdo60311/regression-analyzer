@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="background"></div>
+    <h1>Deep dive into the data</h1>
+    <div class="wrapper">
+        <div class="container">
+            <!-- Card 1: Explore data -->
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card" onclick="handleCardClick('explore_data', 1)">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>Explore data</h4>
+                        <p>Insights Await: The Adventure of Data Exploration</p>
+                    </div>
+                </div>
+            </label>
+
+            <!-- Card 2: Build model -->
+            <input type="radio" name="slide" id="c2">
+            <label for="c2" class="card" onclick="handleCardClick('prepare_data', 2)">
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Data Preparation</h4>
+                        <p>Prapare data for building model</p>
+                    </div>
+                </div>
+            </label>
+
+            <!-- Card 3: Show results -->
+            <input type="radio" name="slide" id="c3">
+            <label for="c3" class="card" onclick="handleCardClick('model_selection', 3)">
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>Model Selection</h4>
+                        <p>Techniques for Successful Model Selection</p>
+                    </div>
+                </div>
+            </label>
+
+            <!-- Card 4: Predict -->
+            <input type="radio" name="slide" id="c4">
+            <label for="c4" class="card" onclick="handleCardClick('result', 4)">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>Show results</h4>
+                        <p>Extracting Meaning from Model Results</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        let lastClickedCard = null;
+        let clickCount = 0;
+
+        function handleCardClick(page, cardIndex) {
+            if (lastClickedCard === cardIndex) {
+                clickCount++;
+                if (clickCount >= 2) {
+                    window.location.href = page;
+                    clickCount = 0; 
+                }
+            } else {
+                lastClickedCard = cardIndex;
+                clickCount = 1;
+            }
+        }
+    </script>
+
+    <!-- <h1>Welcome to the Home Page</h1> -->
+    <!-- <a href="{{ url_for('model_result' ) }}">Enter</a> -->
+{% endblock %}
