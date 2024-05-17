@@ -1,4 +1,3 @@
-import math
 import pandas as pd
 import plotly.io as pio
 import plotly.graph_objs as go
@@ -8,7 +7,6 @@ import seaborn as sns
 from plotly.subplots import make_subplots
 from sklearn.preprocessing import MinMaxScaler
 
-# import plotly.graph_objects as go
 
 class DataPreprocessing:
     def __init__(self):
@@ -87,6 +85,7 @@ class DataPreprocessing:
                             projection = {'type': 'kavrayskiy7'}))
         figure = go.Figure(data = [earth], layout=layout)
         return pio.to_html(fig=figure)
+    
     def explore_dataframe(self):
         null_count = self.df.isnull().sum().to_dict()
         duplicates_count = self.df.duplicated().sum()
@@ -114,10 +113,10 @@ class DataPreprocessing:
 
         fig.update_layout(title='Histograms of Columns',
                         barmode='overlay',
-                        width=1250, height=1350,
+                        width=1250, height=rows * 300,
                         xaxis=dict(title='Values'),
                         yaxis=dict(title='Density'),
-                        template='plotly_dark')
+                        font=dict(size=10))
         return pio.to_html(fig=fig, full_html=False)
     
 

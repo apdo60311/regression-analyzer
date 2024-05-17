@@ -39,7 +39,10 @@
           <a href="#boxplot"><i class="fas fa-filter"></i> Box Plot</a>
         </li>
         <li class="item">
-          <a href="#histograms"><i class="fas fa-chart-line"></i> histograms</a>
+          <a href="#histograms"><i class="fas fa-chart-line"></i> Histograms</a>
+        </li>
+        <li class="item">
+          <a href="#earth"><i class="fas fa-globe"></i> Earth Plot</a>
         </li>
         <li class="item">
           <a href="#Export"><i class="fas fa-file-export"></i> Export</a>
@@ -97,14 +100,29 @@
     <table>
       <thead>
         <tr>
-            <th>Nulls count</th>
+            <th>Statistics</th>
             <th></th>
         </tr>
     </thead>
       <thead>
             <tr>
                 <th>Column Name</th>
+                <th></th>
                 <th>Null Count</th>
+                <th></th>
+                <th>Mean</th>
+                <th></th>
+                <th>Std</th>
+                <th></th>
+                <th>Min</th>
+                <th></th>
+                <th>Quartile 1</th>
+                <th></th>
+                <th>Quartile 2</th>
+                <th></th>
+                <th>Quartile 3</th>
+                <th></th>
+                <th>Max</th>
             </tr>
         </thead>
         <tbody>
@@ -134,6 +152,26 @@
   </div>
   <div id="histograms" class="details" style="display: none;">
     {{histograms|safe}}
+  </div>
+  <div id="earth" class="details" style="display: none">
+    <iframe
+      src="{{ url_for('earth') }}"
+      frameborder="0"
+      style="
+        position: fixed;
+        top: 0;
+        left: 80px;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        z-index: 999999;
+      "
+    ></iframe>
   </div>
 
   <!-- <div id="Data Sources" class="details"></div> -->

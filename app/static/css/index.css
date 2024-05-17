@@ -1,28 +1,25 @@
 body {
     background-color: #ffffff;
-
-
 }
 
 .btn{
     font-family: "Roboto", sans-serif;
     font-size: 23px;
     font-weight: bold;
-    background: #238fc3;
+    background: #007bff;
     width: 300px;
-    padding: 20px ;
+    padding: 20px;
     text-align: center;
     text-decoration: none;
-    color: #fff ;
-    border-radius: 5px  ;
-    cursor: pointer ;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
     box-shadow:  rgba(0, 0, 0, 0.1);
     -webkit-transition-duration: 0.3s;
     -webkit-transition-property: box-shadow, transform;
     top: 69%;
     left:5%;
     position: absolute;
-
 }
 .btn:hover, .btn:focus, .btn:active{
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -30,19 +27,30 @@ body {
     transform: scale(1.1);
 }
 .img {
-    width: 353px;
-    height: 438px;
+    width: 400px;
+    height: 470px;
     border-radius: 23px;
     top:10%;
-    left:60%;
+    left:65%;
     position: absolute;
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-iteration-count:initial;
+
 }
-.Analyzingproject {
-    /* width: 1000px; */
+
+
+  
+  @keyframes myAnimation {
+    from { opacity: 0.5; }
+    to { opacity: 1; } /* Change the value for different opacity levels */
+  }
+
+.title {
     height: 79px;
-    color:#238fc3 ;
+    color:#007bff;
     font-size: 55px;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     word-wrap: break-word;
     position: absolute;
@@ -50,12 +58,12 @@ body {
     left: 5%;
 
 }
-.teams{
+.description{
     width: 900px;
     height: 79px;
-    color: #238fc3;
+    color: #007bff;
     font-size: 28px;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     word-wrap: break-word;
     position: absolute;
@@ -64,4 +72,58 @@ body {
 }
 
 
+.title, .description, .btn {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
+.title.animated-title, .description.animated-description, .btn.animated-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title.animated-title {
+    animation: fadeInTitle 1s ease forwards;
+}
+
+.description.animated-description {
+    animation: fadeInDescription 1s ease forwards;
+}
+
+.btn.animated-btn {
+    animation: fadeInButton 1s ease forwards;
+}
+
+@keyframes fadeInTitle {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDescription {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
