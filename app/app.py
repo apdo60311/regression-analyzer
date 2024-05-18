@@ -106,12 +106,14 @@ def model_selection(model_name):
         else:
             global model_building    
             model_building.set_df(data_preprocessing.df)
-            model_stats = model_building.build_model(model_name)
+            model_stats =  model_building.build_model(model_name)
             global model_evaluation
             model_evaluation = ModelEvaluation(model_name=model_building.model_name,model_results=model_building.results,model_training=model_building)
             reg_plot = model_evaluation.plot_regression()
             learning_curve = model_evaluation.plot_learning_curve()
-            return render_template('result.html',model_stats=model_stats,learning_curve=learning_curve, reg_plot = reg_plot)
+            perm_import = model_evaluation.permutation_importance()
+            resid_plot = model_evaluation.residual_plot()
+            return render_template('result.html',model_stats=model_stats,learning_curve=learning_curve, reg_plot = reg_plot,perm_import=perm_import,resid_plot=resid_plot)
     except:
         return redirect(url_for('error', message = 'prepare data first'))
 
@@ -121,7 +123,9 @@ def model_result():
     try:
         reg_plot = model_evaluation.plot_regression()
         learning_curve = model_evaluation.plot_learning_curve()
-        return render_template('result.html',model_stats=model_evaluation.model_results,learning_curve=learning_curve, reg_plot = reg_plot)
+        perm_import = model_evaluation.permutation_importance()
+        resid_plot = model_evaluation.residual_plot()
+        return render_template('result.html',model_stats=model_evaluation.model_results,learning_curve=learning_curve, reg_plot = reg_plot,perm_import=perm_import,resid_plot=resid_plot)
     except:
         return redirect(url_for('error', message='Prepare data first'))
 

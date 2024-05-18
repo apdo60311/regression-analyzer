@@ -39,7 +39,7 @@
           <a href="#boxplot"><i class="fas fa-filter"></i> Box Plot</a>
         </li>
         <li class="item">
-          <a href="#histograms"><i class="fas fa-chart-line"></i> histograms</a>
+          <a href="#histograms"><i class="fas fa-chart-line"></i> Residual Histogram</a>
         </li>
         <li class="item">
           <a href="#Export"><i class="fas fa-file-export"></i> Export</a>
@@ -79,24 +79,35 @@
             </tr>
         </thead>
         <tbody>
-            <!-- [r2,mae,mse,r2e] -->
-            <tr>
-                <td>R-squared</td>
-                <td>{{ model_stats[0] }}</td>
-            </tr>
-            <tr>
-                <td>MAE</td>
-                <td>{{ model_stats[1] }}</td>
-            </tr>
-            <tr>
-                <td>MSE</td>
-                <td>{{ model_stats[2] }}</td>
-            </tr>
-            <tr>
-                <td>R2E</td>
-                <td>{{ model_stats[3] }}</td>
-            </tr>
-        </tbody>
+
+            {% for label , value in model_stats.items() %}
+                <tr>
+                  {% if label == 'Coefficients' %}
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Feature</th>
+                          <th>Coefficient</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for inner_label , inner_val in value.items() %}
+                          <tr>
+                            <td>{{inner_label}}</td>
+                            <td>{{ inner_val }}</td>                              
+                          </tr>
+                        {% endfor %}
+  
+                      </tbody>
+                    </table>
+                  {% else %}
+                    <td>{{label}}</td>
+                    <td>{{ value }}</td>                    
+                  {% endif %}
+              </tr>              
+            {% endfor %}
+          </tr>
+          </tbody>
     </table>
   </div>
   <div id="heat_map" class="details" style="display: none;">
@@ -106,9 +117,10 @@
     {{learning_curve|safe}}
 </div>
   <div id="boxplot" class="details" style="display: none;">
-    {{histograms|safe}}
+    {{perm_import|safe}}
 </div>
   <div id="histograms" class="details" style="display: none;"> 
+    {{resid_plot|safe}}
   </div> 
 
   <!-- <div id="Data Sources" class="details"></div> -->

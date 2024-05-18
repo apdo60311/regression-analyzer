@@ -5,8 +5,8 @@ import pandas as pd
 import plotly.express as px
 from .model_training import ModelTrainig
 from sklearn.model_selection import learning_curve
-
-
+from sklearn.ensemble import RandomForestRegressor
+    
 class ModelEvaluation:
 
     def __init__(self, model_name:str, model_results:list, model_training:ModelTrainig):
@@ -74,4 +74,17 @@ class ModelEvaluation:
                         width=1250)
 
         fig = go.Figure(data=[scatter_trace, regression_trace], layout=layout)
+        return pio.to_html(fig=fig, full_html=False)
+
+    def permutation_importance(self):
+        pass
+
+    def residual_plot(self):
+        error_values = self.model_training.y_test - self.model_training.y_pred
+        df = pd.DataFrame({'Error Values': error_values})
+        fig = px.histogram(df, x='Error Values', marginal='rug', histnorm='density', nbins=50)
+        fig.update_traces(autobinx=True, selector=dict(type='histogram'))
+        
+        fig.update_layout(width=1250,height=700)
+
         return pio.to_html(fig=fig, full_html=False)

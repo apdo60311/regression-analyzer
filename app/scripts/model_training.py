@@ -53,6 +53,11 @@ class ModelTrainig:
         mse = mean_squared_error(self.y_test, self.y_pred)
         r2e = np.sqrt(mean_squared_error(self.y_test, self.y_pred))
         r2 = r2_score(self.y_test, self.y_pred)
-        self.results = [r2,mae,mse,r2e]
+
+        coeff = dict(zip(self.df.columns, self.fitted_model.coef_))
+
+        self.results = [r2,mae,mse,r2e,coeff]
+        self.results_labels = ['R-squared','Mean Absolute Error','Mean Squared Error','Root Square Error','Coefficients']
+        self.results = dict(zip(self.results_labels, self.results))
         return self.results
     
